@@ -1,0 +1,234 @@
+:root {
+  --text: #242424;
+  --secondary-text: #626262;
+  --line: #d7d7d7;
+  --light-bg: #f4f4f1;
+  --accent: #356859;
+}
+
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+header,
+main {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+header {
+  padding: 52px 0 30px;
+  border-bottom: 3px solid var(--text);
+}
+
+main {
+  padding-bottom: 60px;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 850px;
+  margin-bottom: 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 5vw, 3.7rem);
+  font-weight: normal;
+  line-height: 1.08;
+}
+
+h2 {
+  margin-bottom: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  font-weight: normal;
+}
+
+p {
+  max-width: 800px;
+  color: var(--secondary-text);
+}
+
+/* Cada visualitzacio funciona com una seccio del document */
+.card {
+  margin-top: 0;
+  padding: 32px 0 38px;
+  border-bottom: 1px solid var(--line);
+}
+
+.note {
+  margin-bottom: 18px;
+  font-size: 0.92rem;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 18px 30px;
+  margin: 20px 0 12px;
+  padding: 15px;
+  background: var(--light-bg);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #4b4b4b;
+  font-size: 0.88rem;
+  font-weight: bold;
+}
+
+input[type="range"] {
+  width: 240px;
+  accent-color: var(--accent);
+}
+
+select {
+  min-width: 220px;
+  padding: 7px 9px;
+  border: 1px solid #999999;
+  background: #ffffff;
+  font: inherit;
+}
+
+#yearLabel {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.switch-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.switch-control legend {
+  width: 100%;
+  margin-bottom: 5px;
+  color: #4b4b4b;
+  font-size: 0.88rem;
+  font-weight: bold;
+}
+
+.switch-control label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-weight: normal;
+}
+
+.switch-control input {
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.kpi {
+  padding: 20px;
+  border-right: 1px solid var(--line);
+}
+
+.kpi:last-child {
+  border-right: 0;
+}
+
+.kpi .value {
+  color: var(--accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.8rem;
+}
+
+.kpi .label {
+  color: var(--secondary-text);
+  font-size: 0.84rem;
+}
+
+/* Espai reservat per Plotly */
+.chart {
+  width: 100%;
+  min-height: 390px;
+}
+
+.map-chart {
+  min-height: 510px;
+}
+
+.stacked-chart {
+  min-height: 470px;
+}
+
+.line-chart {
+  min-height: 530px;
+}
+
+footer {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--secondary-text);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 700px) {
+  header,
+  main {
+    width: min(100% - 24px, 1100px);
+  }
+
+  header {
+    padding-top: 32px;
+  }
+
+  .card {
+    padding: 26px 0 30px;
+  }
+
+  .controls {
+    padding: 12px;
+  }
+
+  input[type="range"],
+  select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .kpi:last-child {
+    border-bottom: 0;
+  }
+}

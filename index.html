@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La transició elèctrica mundial</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <h1>Com han evolucionat les emissions de CO2 i qui ha fet els deures?</h1>
+  <p>Aquesta visualització explora l'evolució de la generació elèctrica global i per país, comparant cada font de producció a partir del dataset <em>owid-energy-data.csv</em> d'Our World in Data.</p>
+</header>
+<main>
+  <section class="card">
+    <h2>Mapa mundial d'intensitat de carboni</h2>
+    <p class="note">Intensitat de carboni de l'electricitat per pais, excloent grups agregats. S'actualitza amb l'any seleccionat.</p>
+    <div class="controls">
+      <label>Any per a la comparació <input type="range" id="yearSlider" min="2000" max="2024" value="2024"/><span id="yearLabel">2024</span></label>
+      <fieldset class="switch-control">
+        <legend>Mètrica del mapa</legend>
+        <label><input type="radio" name="mapMetric" value="intensity" checked /> gCO2/kWh</label>
+        <label><input type="radio" name="mapMetric" value="emissions" /> Gasos d'efecte hivernacle anuals</label>
+      </fieldset>
+    </div>
+    <div id="cleanMap" class="chart map-chart"></div>
+  </section>
+  <section class="card">
+    <h2>Total de gasos d'efecte hivernacle per regio</h2>
+    <p class="note">Emissions anuals de gasos d'efecte hivernacle de la generacio electrica. Es mostren els paisos amb mes pes de cada regio; els que representen menys del 2% o queden fora dels 8 principals s'agrupen a "Altres".</p>
+    <div id="regionalEmissionsChart" class="chart stacked-chart"></div>
+  </section>
+  <section class="card">
+    <h2>Evolucio mundial de la generacio electrica per font</h2>
+    <p class="note">Generacio anual d'electricitat al mon des de l'any 2000. Les arees s'acumulen per mostrar tant el pes de cada font com la generacio total. Fes clic a la llegenda per mostrar o amagar fonts d'energia.</p>
+    <div id="energySourcesChart" class="chart line-chart"></div>
+  </section>
+  <section class="card">
+    <h2>Indicadors per pais</h2>
+    <div class="controls">
+      <label>País <select id="countrySelect"></select></label>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="value" id="kpiFossil">—</div><div class="label">% electricitat fòssil</div></div>
+      <div class="kpi"><div class="value" id="kpiEmissions">—</div><div class="label">emissions totals</div></div>
+      <div class="kpi"><div class="value" id="kpiCarbon">—</div><div class="label">intensitat de carboni</div></div>
+    </div>
+  </section>
+</main>
+<script src="index.js"></script>
+</body>
+</html>
