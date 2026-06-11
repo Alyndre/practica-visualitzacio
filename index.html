@@ -32,20 +32,18 @@
     <div id="regionalEmissionsChart" class="chart stacked-chart"></div>
   </section>
   <section class="card">
-    <h2>Evolucio mundial de la generacio electrica per font</h2>
-    <p class="note">Generacio anual d'electricitat al mon des de l'any 2000. Les arees s'acumulen per mostrar tant el pes de cada font com la generacio total. Fes clic a la llegenda per mostrar o amagar fonts d'energia.</p>
-    <div id="energySourcesChart" class="chart line-chart"></div>
-  </section>
-  <section class="card">
-    <h2>Indicadors per pais</h2>
+    <h2>Indicadors per pais o zona</h2>
     <div class="controls">
-      <label>País <select id="countrySelect"></select></label> 
+      <label>País o zona <select id="countrySelect"></select></label>
     </div>
     <div class="kpis">
       <div class="kpi"><div class="value" id="kpiFossil">—</div><div class="label">% electricitat fòssil</div></div>
       <div class="kpi"><div class="value" id="kpiEmissions">—</div><div class="label">emissions totals</div></div>
       <div class="kpi"><div class="value" id="kpiCarbon">—</div><div class="label">intensitat de carboni</div></div>
     </div>
+    <h2 class="chart-title">Evolucio de la generacio electrica per font</h2>
+    <p class="note">Generacio anual d'electricitat des de l'any 2000 per al pais o zona seleccionada. Fes clic a la llegenda per mostrar o amagar fonts d'energia.</p>
+    <div id="energySourcesChart" class="chart line-chart"></div>
   </section>
 </main>
 <script src="index.js"></script>

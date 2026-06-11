@@ -235,10 +235,10 @@ function dibuixarEmissionsRegionals(any) {
   );
 }
 
-function dibuixarFontsEnergia() {
-  const filesMon = dades
+function dibuixarFontsEnergia(pais) {
+  const filesPais = dades
     .filter(function (fila) {
-      return fila.country === "World" && Number(fila.year) >= 2000;
+      return fila.country === pais && Number(fila.year) >= 2000;
     })
     .sort(function (a, b) {
       return Number(a.year) - Number(b.year);
@@ -246,10 +246,10 @@ function dibuixarFontsEnergia() {
 
   const traces = fontsEnergia.map(function (font) {
     return {
-      x: filesMon.map(function (fila) {
+      x: filesPais.map(function (fila) {
         return Number(fila.year);
       }),
-      y: filesMon.map(function (fila) {
+      y: filesPais.map(function (fila) {
         return numero(fila[font[0]]);
       }),
       name: font[1],
@@ -292,7 +292,7 @@ function dibuixarFontsEnergia() {
   );
 }
 
-function actualitzar() {
+function actualitzar(redibuixarFonts) {
   const any = Number(document.getElementById("yearSlider").value);
   const pais = document.getElementById("countrySelect").value;
   const fila = dades.find(function (d) {
@@ -322,6 +322,10 @@ function actualitzar() {
 
   dibuixarMapa(any);
   dibuixarEmissionsRegionals(any);
+
+  if (redibuixarFonts) {
+    dibuixarFontsEnergia(pais);
+  }
 }
 
 function iniciar() {
@@ -329,7 +333,13 @@ function iniciar() {
   const select = document.getElementById("countrySelect");
   const paisos = dades
     .filter(function (fila) {
-      return fila.country === "World" || regioPerPais[fila.iso_code];
+      if (Number(fila.year) < 2000) {
+        return false;
+      }
+
+      return fontsEnergia.some(function (font) {
+        return numero(fila[font[0]]) !== null;
+      });
     })
     .map(function (fila) {
       return fila.country;
@@ -345,16 +355,21 @@ function iniciar() {
   });
   select.value = "World";
 
-  slider.addEventListener("input", actualitzar);
-  select.addEventListener("change", actualitzar);
+  slider.addEventListener("input", function () {
+    actualitzar(false);
+  });
+  select.addEventListener("change", function () {
+    actualitzar(true);
+  });
   document
     .querySelectorAll('input[name="mapMetric"]')
     .forEach(function (radio) {
-      radio.addEventListener("change", actualitzar);
+      radio.addEventListener("change", function () {
+        actualitzar(false);
+      });
     });
 
-  dibuixarFontsEnergia();
-  actualitzar();
+  actualitzar(true);
 }
 
 function guardarDades(filesRegions, filesEnergia) {

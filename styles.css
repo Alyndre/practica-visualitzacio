@@ -169,6 +169,10 @@ select {
   font-size: 0.84rem;
 }
 
+.chart-title {
+  margin-top: 34px;
+}
+
 /* Espai reservat per Plotly */
 .chart {
   width: 100%;
